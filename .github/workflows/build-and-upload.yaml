@@ -1,8 +1,12 @@
 name: build-and-upload
 
 on:
-  release:
-    types: [published]
+  workflow_call:
+  secrets:
+      github_token:
+        required: true
+  # release:
+  #   types: [published]
 
 permissions:
   contents: write
