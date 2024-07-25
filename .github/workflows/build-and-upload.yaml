@@ -13,7 +13,7 @@ permissions:
   packages: write
 
 jobs:
-  build:
+  build-and-upload:
     # PUT THIS BACK SINCE WE NEED ARM BUILDS
     # runs-on: self-hosted
     runs-on: ubuntu-latest
