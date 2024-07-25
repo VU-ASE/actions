@@ -13,8 +13,7 @@ permissions:
   packages: write
 
 jobs:
-  build-and-upload:
-
+  build:
     # PUT THIS BACK SINCE WE NEED ARM BUILDS
     # runs-on: self-hosted
     runs-on: ubuntu-latest
@@ -32,6 +31,9 @@ jobs:
     - name: Build
       run: make build
 
+  upload:
+    runs-on: ubuntu-latest
+    steps:
     - name: Set REPO_NAME environment variable
       run: echo "REPO_NAME=$(echo $GITHUB_REPOSITORY | cut -d '/' -f 2)" >> $GITHUB_ENV
     
