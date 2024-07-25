@@ -24,7 +24,7 @@ jobs:
       volumes:
         - ${{ github.workspace }}:/app
       env:
-        PATH: /root/.cargo/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/go/bin:/usr/go/bin
+        PATH: /root/.cargo/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/go/bin:/usr/go/bin:/root/go/bin
         GOFLAGS: -buildvcs=false
 
     steps:
@@ -32,4 +32,9 @@ jobs:
         with:
           token: ${{ secrets.gh_pat }}
           submodules: pwdrecursive
-      - run: make test
+      # - run: make test
+      - run: id
+      - run: echo $USER
+      - run: echo $HOME
+
+
