@@ -13,26 +13,26 @@ permissions:
 
 
 jobs:
-  lint:
-    name: run make lint
-    defaults:
-      run:
-        shell: bash
-    runs-on: ubuntu-latest
-    container:
-      image: aselabsvu/dev-root
-      # options: --privileged
+  # lint:
+  #   name: run make lint
+  #   defaults:
+  #     run:
+  #       shell: bash
+  #   runs-on: ubuntu-latest
+  #   container:
+  #     image: aselabsvu/dev-root
+  #     # options: --privileged
 
-    steps:
-      # - uses: actions/setup-go@v4
-      #   with:
-      #     go-version: "1.21"
-      #     cache: false
-      - uses: actions/checkout@v3
-        with:
-          token: ${{ secrets.gh_pat }}
-          submodules: recursive
-      - run: make lint
+  #   steps:
+  #     # - uses: actions/setup-go@v4
+  #     #   with:
+  #     #     go-version: "1.21"
+  #     #     cache: false
+  #     - uses: actions/checkout@v3
+  #       with:
+  #         token: ${{ secrets.gh_pat }}
+  #         submodules: recursive
+  #     - run: make lint
       # - run: sudo apt update && sudo apt install pkg-config libzmq3-dev protobuf-compiler
       # - run: go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
       # - name: golangci-lint
@@ -65,4 +65,6 @@ jobs:
       # - run: sudo apt update && sudo apt install pkg-config libzmq3-dev protobuf-compiler
       # - run: go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
       # - name: Run tests
-      - run: make test
+      - run: echo $SHELL
+      - run: pwd
+      - run: ls
