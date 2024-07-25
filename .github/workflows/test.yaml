@@ -20,7 +20,7 @@ jobs:
         shell: bash
     runs-on: ubuntu-latest
     container:
-      image: aselabsvu/dev-root
+      image: aselabsvu/dev
       volumes:
         - ${{ github.workspace }}:/app
       env:
@@ -28,6 +28,8 @@ jobs:
         GOFLAGS: -buildvcs=false
 
     steps:
+      - run: sudo chown -R $USER:$USER $GITHUB_WORKSPACE
+
       - uses: actions/checkout@v3
         with:
           token: ${{ secrets.gh_pat }}
