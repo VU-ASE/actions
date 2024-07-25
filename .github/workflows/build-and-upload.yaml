@@ -2,7 +2,7 @@ name: build-and-upload
 
 on:
   workflow_call:
-  secrets:
+    secrets:
       github_token:
         required: true
   # release:
