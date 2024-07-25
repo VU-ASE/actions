@@ -50,9 +50,9 @@ jobs:
         shell: bash
     runs-on: ubuntu-latest
     container:
-      image: aselabsvu/dev
+      image: aselabsvu/dev-root
       volumes:
-        - ${{ github.workspace }}:/home/dev
+        - ${{ github.workspace }}:/opt
       # options: --privileged
 
     steps:
@@ -71,4 +71,4 @@ jobs:
       - run: pwd
       - run: ls
       - run: go version
-      - run: make lint
+      - run: cd /opt && make lint
