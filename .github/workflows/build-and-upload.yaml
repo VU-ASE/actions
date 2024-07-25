@@ -3,7 +3,7 @@ name: build-and-upload
 on:
   workflow_call:
     secrets:
-      github_token:
+      gh_token:
         required: true
   # release:
   #   types: [published]
@@ -42,13 +42,13 @@ jobs:
       id: get_release
       uses: bruceadams/get-release@v1.3.2
       env:
-        GITHUB_TOKEN: ${{ secrets.github_token }}
+        GITHUB_TOKEN: ${{ secrets.gh_token }}
 
     - name: Upload Release Asset
       id: upload-release-asset 
       uses: actions/upload-release-asset@v1
       env:
-        GITHUB_TOKEN: ${{ secrets.github_token }}
+        GITHUB_TOKEN: ${{ secrets.gh_token }}
       with:
         upload_url: ${{ steps.get_release.outputs.upload_url }}
         asset_path: ${{ env.REPO_NAME }}.zip
