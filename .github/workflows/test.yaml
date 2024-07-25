@@ -20,7 +20,7 @@ jobs:
         shell: bash
     runs-on: ubuntu-latest
     container:
-      image: aselabsvu/dev
+      image: aselabsvu/dev-root
       volumes:
         - ${{ github.workspace }}:/app
       env:
