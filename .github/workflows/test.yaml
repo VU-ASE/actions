@@ -13,36 +13,6 @@ permissions:
 
 
 jobs:
-  # lint:
-  #   name: run make lint
-  #   defaults:
-  #     run:
-  #       shell: bash
-  #   runs-on: ubuntu-latest
-  #   container:
-  #     image: aselabsvu/dev-root
-  #     # options: --privileged
-
-  #   steps:
-  #     # - uses: actions/setup-go@v4
-  #     #   with:
-  #     #     go-version: "1.21"
-  #     #     cache: false
-  #     - uses: actions/checkout@v3
-  #       with:
-  #         token: ${{ secrets.gh_pat }}
-  #         submodules: recursive
-  #     - run: make lint
-      # - run: sudo apt update && sudo apt install pkg-config libzmq3-dev protobuf-compiler
-      # - run: go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
-      # - name: golangci-lint
-      #   uses: golangci/golangci-lint-action@v3
-      #   with:
-      #     version: v1.55
-      #     skip-pkg-cache: true
-
-
-
   test:
     name: run make test
     defaults:
@@ -54,7 +24,8 @@ jobs:
       volumes:
         - ${{ github.workspace }}:/opt
       env:
-        PATH: /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/go/bin:/usr/go/bin
+        PATH: /root/.cargo/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/go/bin:/usr/go/bin
+        GOFLAGS: -buildvcs=false
 
     steps:
       # - uses: actions/setup-go@v4
@@ -65,12 +36,4 @@ jobs:
         with:
           token: ${{ secrets.gh_pat }}
           submodules: pwdrecursive
-      # - run: sudo apt update && sudo apt install pkg-config libzmq3-dev protobuf-compiler
-      # - run: go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
-      # - name: Run tests
-      - run: echo $SHELL
-      - run: pwd
-      - run: ls
-      - run: /usr/local/go/bin/go version
-      - run: echo $PATH
       - run: make test
