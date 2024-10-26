@@ -19,20 +19,21 @@ jobs:
       run:
         shell: bash
     runs-on: ubuntu-latest
-    container:
-      image: aselabsvu/dev-root
-      volumes:
-        - ${{ github.workspace }}:/app
-      env:
-        PATH: /root/.cargo/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/go/bin:/usr/go/bin:/root/go/bin
-        GOFLAGS: -buildvcs=false
 
     steps:
       - uses: actions/checkout@v3
         with:
           token: ${{ secrets.gh_pat }}
           submodules: pwdrecursive
-      - run: make test
+      - name: Set up Dev Containers CLI
+        uses: devcontainers/cli-action@v0.5.2
+      - name: Build and run devcontainer
+        run: |
+          devcontainer up --workspace-folder . --skip-post-attach
+      - name: Run Tests in Devcontainer
+        # Assumes that all repositories have a make test target
+        run: |
+          devcontainer exec --workspace-folder . "make test" 
 
 
 
