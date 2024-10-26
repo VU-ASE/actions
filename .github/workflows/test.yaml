@@ -25,15 +25,12 @@ jobs:
         with:
           token: ${{ secrets.gh_pat }}
           submodules: pwdrecursive
-      - name: Set up Dev Containers CLI
-        uses: devcontainers/cli-action@v0.5.2
-      - name: Build and run devcontainer
-        run: |
-          devcontainer up --workspace-folder . --skip-post-attach
-      - name: Run Tests in Devcontainer
-        # Assumes that all repositories have a make test target
-        run: |
-          devcontainer exec --workspace-folder . "make test" 
+      - name: Run tests in devcontainer
+        uses: devcontainers/ci@v0.3
+        with:    
+          push: never
+          # Assumes each repository has a Makefile with a test target
+          runCmd: make test
 
 
 
