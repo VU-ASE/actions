@@ -18,8 +18,9 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
-    - name: Build
-      run: make build
+    # Temporary disabled to be able to work on roverd
+    # - name: Build
+    #  run: make build
 
     - name: Set REPO_NAME environment variable
       run: echo "REPO_NAME=$(echo $GITHUB_REPOSITORY | cut -d '/' -f 2)" >> $GITHUB_ENV
