@@ -14,9 +14,7 @@ permissions:
 
 jobs:
   build-and-upload:
-    # PUT THIS BACK SINCE WE NEED ARM BUILDS
-    # runs-on: self-hosted
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     container:
       image: aselabsvu/dev-root
       volumes:
