@@ -15,14 +15,6 @@ permissions:
 jobs:
   build-and-upload:
     runs-on: self-hosted
-    container:
-      image: aselabsvu/dev-root
-      volumes:
-        - ${{ github.workspace }}:/app
-      env:
-        PATH: /root/.cargo/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/go/bin:/usr/go/bin:/root/go/bin
-        GOFLAGS: -buildvcs=false
-
     steps:
     - uses: actions/checkout@v4
 
