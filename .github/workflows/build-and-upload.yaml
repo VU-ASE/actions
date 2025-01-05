@@ -26,7 +26,7 @@ jobs:
 
               # We already built the service, no need to run from source
             - name: Modify build action in service.yaml
-              run: yq -i '.commands.build = "echo built"' service.yaml
+              run: "sed -i 's/build: .*/build: echo built/' service.yaml"
 
             - name: Zip binary and service.yaml
               run: zip ${{ env.REPO_NAME }}.zip -r ./bin/${{ env.REPO_NAME }} service.yaml
