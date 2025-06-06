@@ -7,6 +7,8 @@ on:
                 required: true
     release:
         types: [published]
+    pull_request:
+        types: [opened, edited]
 
 permissions:
     contents: write
@@ -24,11 +26,15 @@ jobs:
             - name: Set REPO_NAME environment variable
               run: echo "REPO_NAME=$(echo $GITHUB_REPOSITORY | cut -d '/' -f 2)" >> $GITHUB_ENV
 
+              # After this step everything runs only on release events. It will be skipped for pull requests.
+
               # We already built the service, no need to run from source
             - name: Modify build action in service.yaml
+              if: github.event_name == 'release'
               run: "sed -i 's/build: .*/build: echo built/' service.yaml"
 
             - name: Extract release version
+              if: github.event_name == 'release'
               id: extract_version
               run: |
                   TAG_NAME=${GITHUB_REF##*/}
@@ -36,19 +42,23 @@ jobs:
                   echo "RELEASE_VERSION=$VERSION" >> $GITHUB_ENV
 
             - name: Modify service.yaml version
+              if: github.event_name == 'release'
               run: |
                   sed -i "s/version: .*/version: $RELEASE_VERSION/" service.yaml
 
             - name: Zip binary and service.yaml
+              if: github.event_name == 'release'
               run: zip ${{ env.REPO_NAME }}.zip -r ./bin/${{ env.REPO_NAME }} service.yaml
 
             - name: Get release
+              if: github.event_name == 'release'
               id: get_release
               uses: bruceadams/get-release@v1.3.2
               env:
                   GITHUB_TOKEN: ${{ secrets.gh_token }}
 
             - name: Upload Release Asset
+              if: github.event_name == 'release'
               id: upload-release-asset
               uses: actions/upload-release-asset@v1
               env:
