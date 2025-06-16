@@ -1,3 +1,3 @@
-## Self-hosted Runner
+# Self-hosted Runner
 
 lorem ipsum
