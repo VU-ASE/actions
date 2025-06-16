@@ -1,3 +1,3 @@
 # Self-hosted Runner
 
-lorem ipsum
+We have configured one debix board as a self-hosted Runner for the Build GitHub workflow. We have done this for several reasons. Crucially the most important reasons is to have all the dependencies (such as OpenCV) installed on the device that builds the services. Cloning them on the remote GitHub server would be time consuming. Furthermore, the runner ensures consistency in building the services, meaning that if the service can be built on it, the chances are high that it will build and work on the rover's debix. 
