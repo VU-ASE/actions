@@ -102,7 +102,7 @@ The following is a comprehensive list of repositories and whether they have reus
     </tr>
     <tr>
       <td><code>roverlib-c-sharp</code></td>
-      <td colspan="3" style="text-align:center;">Old CI/CD configuration (needs to be updated to standard)
+      <td colspan="3" style="text-align:center;">Old CI/CD configuration (needs to be updated to standard)</td>
     </tr>
     <tr>
       <td><code>lidar</code></td>
