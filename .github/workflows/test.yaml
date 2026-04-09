@@ -23,7 +23,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          token: ${{ secrets.gh_pat }}
+          token: ${{ secrets.GH_PAT }}
           submodules: pwdrecursive
       - name: Run tests in devcontainer
         uses: devcontainers/ci@v0.3
