@@ -25,6 +25,7 @@ jobs:
         with:
           token: ${{ secrets.GH_PAT }}
           submodules: pwdrecursive
+          persist-credentials: true
       - name: Run tests in devcontainer
         uses: devcontainers/ci@v0.3
         with:    
