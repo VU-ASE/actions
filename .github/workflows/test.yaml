@@ -23,7 +23,7 @@ jobs:
     steps:
       - uses: actions/checkout@v6.0.2
         with:
-          token: ${{ secrets.GH_PAT }}
+          token: ${{ secrets.GITHUB_TOKEN }}
           submodules: pwdrecursive
           persist-credentials: true
       - name: Run tests in devcontainer
